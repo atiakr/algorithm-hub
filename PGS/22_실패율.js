@@ -17,6 +17,12 @@ const solution = (N, stages) => {
     }
 
     // 성공 퍼센테이지를 낮은순서대로 정렬
-    const clearPercentage = stageFailCount.map((el) => el / stageClearCount[j]);
-    return new Array(N).fill().map((_, idx) => idx);
+    const clearPercentage = stageFailCount.map(
+        (el, idx) => el / stageClearCount[idx]
+    );
+    return new Array(N)
+        .fill()
+        .map((_, idx) => idx)
+        .sort((a, b) => clearPercentage[a] - clearPercentage[b])
+        .map((el) => el + 1);
 };
