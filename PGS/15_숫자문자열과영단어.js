@@ -16,12 +16,13 @@ const solution = (s) => {
     };
     // 1. 값들을 전부 문자열 형태로 변환
     for (let _key in _alphabetList) {
-        s = s.replaceAll(_key, _alphabetList[_key]);
+        s = s
+            .replaceAll(_key, _alphabetList[_key])
+            .replaceAll(_alphabetList[_key], _key);
     }
-    // 2. 문자열을 숫자형태로 변환
-    for (let _key in _alphabetList) {
-        s = s.replaceAll(_alphabetList[_key], _key);
-    }
+
+    // 여기서 Object.entries 와 구조분해할당을 사용하면 더 간결하게 표현할 수 있음.
+    // for (let [key, value] of Object.entries(_alphabetList))
 
     return Number(s);
 };
